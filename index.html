@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bike Stop!</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap" rel="stylesheet"/>
+
+    <!-- Father Icons -->
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Style -->
+    
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <!-- Alpinejs -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- App -->
+   <script src="src/app.js"></script>
+
+  </head>
+  <body>
+    <!-- Navbar Start -->
+
+    <nav class="navbar" x-data>
+      <a href="#" class="navbar-logo">bike<span>Stop!</span></a>
+
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Profil Perusahaan</a>
+        <a href="#product">Menu Bebas</a>
+        <a href="spare-part.php">Produk</a>
+        <a href="../adminpanel/login.php">Login</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#about" id="shopping-cart-button">
+          <i data-feather="shopping-cart"></i>
+          <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+
+      </a>
+      </div>
+      
+    <!-- Shopping cart Start -->
+    <div class="shopping-cart">
+    <template x-for="(item, index) in $store.cart.items" x-key="index">
+      <div class="cart-item">
+        <img :src ="`img product/${item.img}`" :alt="item.name">
+        <div class="item-detail">
+          <h3 x-text="item.name"></h3>
+          <div class="item-price">
+            <span x-text="rupiah(item.price)"></span> &times;
+            <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+            <span x-text="item.quantity"></span> 
+            <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+            <span x-text="rupiah(item.total)"></span>
+          </div>
+          </template>
+          <h4 x-show="$store.cart.items.length">Total: <span x-text="rupiah($store.cart.total)"></span></h4>
+    </div>
+    
+
+    <!-- Shopping cart End -->
+    
+  </nav>
+
+
+    <!-- Navbar End -->
+
+    <!-- Hero Section Start -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>Buat Sepeda Menjadi Teman Baikmu</h1>
+        <p>bikeStop! merupakan bengkel sepeda dengan kualitas dan pelayanan terbaik</p>
+        <a href="spare-part.php" class="cta">Buy Now!</a> 
+      </main>
+
+    </section>
+
+    <!-- Hero Section End -->
+
+    <!-- About Section Start -->
+
+    <section class="about" id="about">
+      <h2>Tentang <span>Kami</span></h2>
+        
+      <div class="row">
+        <div class="about-img">
+          <p>
+          <video width="400" height="200" controls autoplay>
+              <source src="img/menu-bebas.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+          </p>
+        </div>
+        <div class="content" width="100" height="100">
+        <h3>Kenapa Workshop Kami?</h3>
+
+        <p>Workshop kami mengerjakan komisi dengan cepat dan tepat sesuai dengan yang pelanggan inginkan dengan harga terjangkau dan kualitas terbaik.</p>
+        <p>Kami tidak hanya saja melakukan servis dan maintenance tetapi kami juga menyediakan beberapa produk unggulan bagi sepeda kalian. </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section End -->
+
+    <!-- Product Section Start -->
+    <section id="product" class="product">
+      <h2>Menu <span>Kategori</span></h2>
+      <p>Berikut adalah catalog dari produk kami terbagi menjadi 3.</p>
+
+      <div class="row">
+        <div class="product-card">
+          <img src="img product/product 1.jpg" alt="Liberty Nemesis" class="product-card-img">
+          <h3 class="product-card-title">Frameset</h3>
+          <p class="product-card-price">Frameset</p>
+        </div>
+        <div class="product-card">
+          <img src="img product/product 3.jpg" alt="Liberty Nemesis" class="product-card-img">
+          <h3 class="product-card-title">Wheelset</h3>
+          <p class="product-card-price">Wheelset</p>
+        </div>
+        <div class="product-card">
+          <img src="img product/product 6.jpg" alt="Liberty Nemesis" class="product-card-img">
+          <h3 class="product-card-title">Fullbike</h3>
+          <p class="product-card-price">Fullbike</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Section End -->
+
+   
+    <!-- Footer start -->
+    <footer>
+      <div class="socials">
+       <a href="https://www.instagram.com/pnzee_/?hl=en"><i data-feather="instagram"></i></a>
+       <a href="#"><i data-feather="facebook"></i></a>
+       <a href="#"><i data-feather="twitter"></i></a>
+      </div>
+
+      <div class="links">
+      <a href="#home">Home</a>
+        <a href="#about">Profil Perusahaan</a>
+        <a href="#product">Menu Bebas</a>
+        <a href="spare-part.php">Produk</a>
+        <a href="#login ">Login</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by <a href="">Dzull</a>. | &copy 2024.</p>
+      </div>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- Feather Icons -->
+
+    <script>
+      feather.replace();
+    </script>
+
+     <!-- Javascript -->
+     <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produk</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap" rel="stylesheet"/>
+
+    <!-- Father Icons -->
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Style -->
+    
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <!-- Alpinejs -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- App -->
+   <script src="src/app.js"></script>
+
+  </head>
+  <body>
+    <!-- Navbar Start -->
+
+    <nav class="navbar" x-data>
+      <a href="#" class="navbar-logo">bike<span>Stop!</span></a>
+
+      <div class="navbar-nav">
+        <a href="index.php">Home</a>
+        <a href="index.php">Profil Perusahaan</a>
+        <a href="index.php">Menu Bebas</a>
+        <a href="#spare-part">Produk</a>
+        <a href="login.php">Login</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#about" id="shopping-cart-button">
+          <i data-feather="shopping-cart"></i>
+          <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+
+      </a>
+      </div>
+      
+    <!-- Shopping cart Start -->
+    <div class="shopping-cart">
+    <template x-for="(item, index) in $store.cart.items" x-key="index">
+      <div class="cart-item">
+        <img :src ="`img product/${item.img}`" :alt="item.name">
+        <div class="item-detail">
+          <h3 x-text="item.name"></h3>
+          <div class="item-price">
+            <span x-text="rupiah(item.price)"></span> &times;
+            <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+            <span x-text="item.quantity"></span> 
+            <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+            <span x-text="rupiah(item.total)"></span>
+          </div>
+          </template>
+          <h4 x-show="$store.cart.items.length">Total: <span x-text="rupiah($store.cart.total)"></span></h4>
+    </div>
+    
+
+    <!-- Shopping cart End -->
+    
+  </nav>
+
+
+    <!-- Navbar End -->
+
+
+    <!-- Spare-part Section Start -->
+    <section id="spare-part" class="spare-part" x-data="products">
+      <h2>Best <span>Sellers!</span></h2>
+      <p>Berikut adalah beberapa produk unggulan kami yang bisa anda gunakan</p>
+
+      <div class="row">
+        <template x-for="(item, index) in items" x-key="index">
+        <div class="spare-part-card">
+          <div class="spare-part-icons">
+          <a href="#" @click.prevent="$store.cart.add(item)">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"    stroke-linecap="round" 
+            stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#shopping-cart" />
+        </svg>
+          </a>
+          </div>
+          <div class="spare-part-image">
+          <img :src="`img product/${item.img}`" :alt="item.name">
+          </div>
+          <div class="spare-part-content">
+            <h3 x-text="item.name">Wheelset Dennos</h3>
+            <div class="spare-part-stars">
+            <svg width="24" height="24" fill="gold" stroke="currentColor" stroke-width="2"    stroke-linecap="round" 
+            stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#star" />
+        </svg>
+            <svg width="24" height="24" fill="gold" stroke="currentColor" stroke-width="2"    stroke-linecap="round" 
+            stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#star" />
+        </svg>
+            <svg width="24" height="24" fill="gold" stroke="currentColor" stroke-width="2"    stroke-linecap="round" 
+            stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#star" />
+        </svg>
+            <svg width="24" height="24" fill="gold" stroke="currentColor" stroke-width="2"    stroke-linecap="round" 
+            stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#star" />
+        </svg>
+            <svg width="24" height="24" fill="gold" stroke="currentColor" stroke-width="2"    stroke-linecap="round" 
+            stroke-linejoin="round">
+            <use href="img/feather-sprite.svg#star" />
+        </svg>
+            </div>
+            <div class="spare-part-price" x-text="rupiah(item.price)"></div>
+          </div>
+        </div>
+        </template>
+      </div>
+        
+    </section>
+
+    <!-- Spare-part Section End -->
+
+    <!-- Footer start -->
+    <footer>
+      <div class="socials">
+       <a href="https://www.instagram.com/pnzee_/?hl=en"><i data-feather="instagram"></i></a>
+       <a href="#"><i data-feather="facebook"></i></a>
+       <a href="#"><i data-feather="twitter"></i></a>
+      </div>
+
+      <div class="links">
+      <a href="index.php">Home</a>
+        <a href="index.php">Profil Perusahaan</a>
+        <a href="index.php">Menu Bebas</a>
+        <a href="#spare-part">Produk</a>
+        <a href="#login ">Login</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by <a href="">Dzull</a>. | &copy 2024.</p>
+      </div>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- Feather Icons -->
+
+    <script>
+      feather.replace();
+    </script>
+
+     <!-- Javascript -->
+     <script src="js/script.js"></script>
+  </body>
+</html>
